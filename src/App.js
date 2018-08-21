@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Users from './Components/Users';
+import { MuiThemeProvider } from 'material-ui/styles';
 
 class App extends Component {
   render() {
     return (
+      <MuiThemeProvider>
       <div className="App">
         <Users />
       </div>
+      </MuiThemeProvider>
     );
   }
 }

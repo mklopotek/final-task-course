@@ -1,5 +1,8 @@
-import React from 'react'
-import Loading from '../Components/Loading'
+import React from 'react';
+import Loading from '../Components/Loading';
+import { List, ListItem } from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import Subheader from 'material-ui/Subheader';
 
 class Users extends React.Component {
     state = {
@@ -18,17 +21,26 @@ class Users extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'users__list'}>
                 {
                     this.state.users ?
-                        this.state.users.map(e => {
-                            return (
-                                <div key={e.login.uuid}>
-                                    <img src={e.picture.medium} alt='' />
-                                    <div>{e.email}</div>
-                                </div>
-                            )
-                        })
+
+                        <List>
+                            <Subheader>Your ten random users</Subheader>
+                            {
+                                this.state.users.map(e => {
+                                    return (
+
+                                        <ListItem
+                                            key={e.login.uuid}
+                                            primaryText={e.email}
+                                            leftAvatar={<Avatar src={e.picture.medium} />}
+                                        />
+                                    )
+                                })
+                            }
+
+                        </List>
                         :
                         <Loading />
                 }
